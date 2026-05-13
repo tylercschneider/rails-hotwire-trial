@@ -1,5 +1,9 @@
 require "csv"
 
+User.find_or_create_by!(email_address: "admin@example.com") do |user|
+  user.password = "password"
+end
+
 CSV.foreach(Rails.root.join("db/photos.csv"), headers: true) do |row|
   Photo.find_or_create_by!(source_url: row["url"]) do |photo|
     photo.photographer = row["photographer"]
