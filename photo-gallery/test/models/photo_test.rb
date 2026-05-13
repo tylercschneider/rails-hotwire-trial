@@ -1,7 +1,8 @@
 require "test_helper"
 
 class PhotoTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "is invalid without a photographer" do
+    photo = Photo.new(photographer: nil)
+    assert_not photo.valid?
+  end
 end
