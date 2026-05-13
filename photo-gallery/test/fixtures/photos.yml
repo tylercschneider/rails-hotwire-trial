@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  photographer: MyString
+  source_url: MyString
+  src_medium: MyString
+  alt: MyString
+
+two:
+  photographer: MyString
+  source_url: MyString
+  src_medium: MyString
+  alt: MyString
