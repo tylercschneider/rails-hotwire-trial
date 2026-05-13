@@ -5,4 +5,9 @@ class PhotoTest < ActiveSupport::TestCase
     photo = Photo.new(photographer: nil)
     assert_not photo.valid?
   end
+
+  test "is invalid without a source_url" do
+    photo = Photo.new(photographer: "Felix", source_url: nil)
+    assert_not photo.valid?
+  end
 end
