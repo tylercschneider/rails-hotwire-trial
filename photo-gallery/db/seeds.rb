@@ -4,6 +4,13 @@ User.find_or_create_by!(email_address: "admin@example.com") do |user|
   user.password = "password"
 end
 
+viewer_emails = %w[ alice@example.com bob@example.com carol@example.com ]
+viewer_emails.each do |email|
+  User.find_or_create_by!(email_address: email) do |user|
+    user.password = "password"
+  end
+end
+
 CSV.foreach(Rails.root.join("db/photos.csv"), headers: true) do |row|
   Photo.find_or_create_by!(source_url: row["url"]) do |photo|
     photo.photographer = row["photographer"]
