@@ -20,4 +20,11 @@ class PhotoTest < ActiveSupport::TestCase
     like = likes(:one)
     assert like.photo.liked_by?(like.user)
   end
+
+  test "likes_count counter cache increments when a like is created" do
+    photo = photos(:two)
+    assert_difference -> { photo.reload.likes_count }, 1 do
+      photo.likes.create!(user: users(:one))
+    end
+  end
 end
