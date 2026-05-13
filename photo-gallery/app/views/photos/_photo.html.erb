@@ -1,10 +1,12 @@
-<li class="photo" id="<%= dom_id(photo) %>">
-  <img src="<%= photo.src_medium %>" alt="<%= photo.alt %>" class="photo-image">
-  <div class="photo-meta">
-    <p class="photographer"><%= photo.photographer %></p>
-    <a href="<%= photo.source_url %>" target="_blank" rel="noopener" class="source-link">
-      <%= image_tag "links.svg", alt: "Source", class: "icon" %>
-    </a>
-    <%= render "like", photo: photo, liked: liked_photo_ids.include?(photo.id) %>
-  </div>
-</li>
+<% cache [ photo, Current.user ] do %>
+  <li class="photo" id="<%= dom_id(photo) %>">
+    <img src="<%= photo.src_medium %>" alt="<%= photo.alt %>" class="photo-image">
+    <div class="photo-meta">
+      <p class="photographer"><%= photo.photographer %></p>
+      <a href="<%= photo.source_url %>" target="_blank" rel="noopener" class="source-link">
+        <%= image_tag "links.svg", alt: "Source", class: "icon" %>
+      </a>
+      <%= render "like", photo: photo, liked: liked_photo_ids.include?(photo.id) %>
+    </div>
+  </li>
+<% end %>
