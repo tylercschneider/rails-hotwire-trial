@@ -18,4 +18,10 @@ class SeedTest < ActiveSupport::TestCase
     load Rails.root.join("db/seeds.rb").to_s
     assert User.find_by(email_address: "alice@example.com")
   end
+
+  test "creates 9 sample likes" do
+    Like.destroy_all
+    load Rails.root.join("db/seeds.rb").to_s
+    assert_equal 9, Like.count
+  end
 end

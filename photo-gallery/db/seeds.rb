@@ -18,3 +18,11 @@ CSV.foreach(Rails.root.join("db/photos.csv"), headers: true) do |row|
     photo.alt = row["alt"]
   end
 end
+
+photos = Photo.order(:id).to_a
+viewer_emails.each_with_index do |email, i|
+  user = User.find_by!(email_address: email)
+  photos.first(i + 2).each do |photo|
+    Like.find_or_create_by!(user: user, photo: photo)
+  end
+end
