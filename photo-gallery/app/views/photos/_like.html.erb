@@ -2,8 +2,18 @@
   <% liked = photo.liked_by?(Current.user) %>
   <%= button_to photo_like_path(photo),
                 method: liked ? :delete : :post,
-                class: "like-button #{'liked' if liked}" do %>
-    <%= image_tag(liked ? "star-fill.svg" : "star-line.svg", class: "icon", alt: liked ? "Unlike" : "Like") %>
-    <span class="like-count"><%= photo.likes.size %></span>
+                class: "like-button #{'liked' if liked}",
+                data: {
+                  controller: "like",
+                  action: "click->like#toggle",
+                  like_liked_value: liked,
+                  like_line_url_value: asset_path("star-line.svg"),
+                  like_fill_url_value: asset_path("star-fill.svg")
+                } do %>
+    <%= image_tag(liked ? "star-fill.svg" : "star-line.svg",
+                  class: "icon",
+                  alt: liked ? "Unlike" : "Like",
+                  data: { like_target: "icon" }) %>
+    <span class="like-count" data-like-target="count"><%= photo.likes.size %></span>
   <% end %>
 <% end %>
