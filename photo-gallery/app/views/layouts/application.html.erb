@@ -24,6 +24,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="app-header">
+      <%= link_to root_path, class: "logo-link", aria: { label: "Photo Gallery home" } do %>
+        <%= image_tag "logo.svg", class: "logo", alt: "Photo Gallery" %>
+      <% end %>
+      <% if Current.user %>
+        <%= button_to "Sign out", session_path, method: :delete, class: "sign-out-button" %>
+      <% end %>
+    </header>
+
+    <main class="app-main">
+      <%= yield %>
+    </main>
   </body>
 </html>
