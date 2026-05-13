@@ -15,4 +15,9 @@ class PhotoTest < ActiveSupport::TestCase
     photo = Photo.new(photographer: "Felix", source_url: "https://example.com", src_medium: nil)
     assert_not photo.valid?
   end
+
+  test "liked_by? returns true for the liking user" do
+    like = likes(:one)
+    assert like.photo.liked_by?(like.user)
+  end
 end
