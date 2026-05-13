@@ -21,4 +21,12 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
       post photo_like_path(like.photo)
     end
   end
+
+  test "destroy removes the user's like" do
+    like = likes(:one)
+    sign_in_as(like.user)
+    assert_difference -> { like.photo.likes.count }, -1 do
+      delete photo_like_path(like.photo)
+    end
+  end
 end
