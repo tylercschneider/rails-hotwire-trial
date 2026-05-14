@@ -5,6 +5,7 @@ one:
   source_url: MyString
   src_medium: MyString
   alt: MyString
+  uploader: one
 
 two:
   photographer: MyString

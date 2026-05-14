@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_13_234527) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_14_030136) do
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "photo_id", null: false
@@ -29,6 +29,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_234527) do
     t.string "source_url"
     t.string "src_medium"
     t.datetime "updated_at", null: false
+    t.integer "uploader_id"
+    t.index ["uploader_id"], name: "index_photos_on_uploader_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -50,5 +52,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_234527) do
 
   add_foreign_key "likes", "photos"
   add_foreign_key "likes", "users"
+  add_foreign_key "photos", "users", column: "uploader_id"
   add_foreign_key "sessions", "users"
 end
