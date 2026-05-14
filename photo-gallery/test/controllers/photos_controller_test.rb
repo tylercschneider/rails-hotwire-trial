@@ -28,4 +28,15 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
       } }
     end
   end
+
+  test "create sets the uploader to the current user" do
+    sign_in_as(users(:one))
+    post photos_path, params: { photo: {
+      photographer: "Tyler",
+      source_url: "https://example.com/2",
+      src_medium: "https://example.com/img.jpg",
+      alt: "Test photo"
+    } }
+    assert_equal users(:one), Photo.last.uploader
+  end
 end

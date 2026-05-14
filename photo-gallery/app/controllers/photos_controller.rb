@@ -10,6 +10,7 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(photo_params)
+    @photo.uploader = Current.user
     if @photo.save
       redirect_to photos_path, notice: "Photo added."
     else
