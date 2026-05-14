@@ -29,11 +29,17 @@
         <%= image_tag "logo.svg", class: "logo", alt: "Photo Gallery" %>
       <% end %>
       <% if Current.user %>
-        <%= button_to "Sign out", session_path, method: :delete, class: "sign-out-button" %>
+        <nav class="header-nav">
+          <%= link_to "Add photo", new_photo_path, class: "header-link" %>
+          <%= button_to "Sign out", session_path, method: :delete, class: "sign-out-button" %>
+        </nav>
       <% end %>
     </header>
 
     <main class="app-main">
+      <% flash.each do |type, message| %>
+        <div class="flash flash-<%= type %>"><%= message %></div>
+      <% end %>
       <%= yield %>
     </main>
   </body>
