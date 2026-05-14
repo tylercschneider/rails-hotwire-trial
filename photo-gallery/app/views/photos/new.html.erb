@@ -1,0 +1,27 @@
+<section class="sign-in">
+  <h1>Add a photo</h1>
+
+  <%= form_with model: @photo do |form| %>
+    <div class="field">
+      <%= form.label :photographer %>
+      <%= form.text_field :photographer, required: true, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :src_medium, "Image URL" %>
+      <%= form.url_field :src_medium, required: true, placeholder: "https://..." %>
+    </div>
+
+    <div class="field">
+      <%= form.label :source_url, "Source URL" %>
+      <%= form.url_field :source_url, required: true, placeholder: "https://..." %>
+    </div>
+
+    <div class="field">
+      <%= form.label :alt, "Alt text" %>
+      <%= form.text_field :alt %>
+    </div>
+
+    <%= form.submit "Add photo", class: "primary-button" %>
+  <% end %>
+</section>
