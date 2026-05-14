@@ -35,6 +35,53 @@ h1 { font-size: 1.5rem; margin: 0 0 1rem; }
   padding: 0.75rem 1rem;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.hamburger {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  margin: 4px 0;
+  border-radius: 1px;
+}
+
+@media (max-width: 639px) {
+  .hamburger { display: block; }
+
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 0.75rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    z-index: 10;
+    min-width: 180px;
+  }
+
+  .header-nav.open {
+    display: flex;
+  }
+
+  .header-link, .sign-out-button button {
+    text-align: center;
+  }
 }
 
 .logo-link {
