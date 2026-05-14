@@ -40,6 +40,7 @@
         </button>
         <nav class="header-nav" data-mobile-nav-target="menu">
           <span class="header-user"><%= Current.user.display_name %></span>
+          <%= link_to "Home", root_path, class: "header-link" %>
           <%= link_to "Add photo", new_photo_path, class: "header-link" %>
           <%= button_to "Sign out", session_path, method: :delete, class: "sign-out-button" %>
         </nav>
