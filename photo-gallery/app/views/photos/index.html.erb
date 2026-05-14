@@ -1,5 +1,5 @@
 <h1>Photos</h1>
 
 <ul class="photos">
-  <%= render @photos %>
+  <%= render partial: "photo", collection: @photos, locals: { liked_photo_ids: @liked_photo_ids } %>
 </ul>

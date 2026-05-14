@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_13_224746) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_13_234527) do
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "photo_id", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_13_224746) do
   create_table "photos", force: :cascade do |t|
     t.string "alt"
     t.datetime "created_at", null: false
+    t.integer "likes_count", default: 0, null: false
     t.string "photographer"
     t.string "source_url"
     t.string "src_medium"

@@ -1,5 +1,4 @@
 <%= turbo_frame_tag dom_id(photo, :like) do %>
-  <% liked = photo.liked_by?(Current.user) %>
   <%= button_to photo_like_path(photo),
                 method: liked ? :delete : :post,
                 class: "like-button #{'liked' if liked}",
@@ -14,6 +13,6 @@
                   class: "icon",
                   alt: liked ? "Unlike" : "Like",
                   data: { like_target: "icon" }) %>
-    <span class="like-count" data-like-target="count"><%= photo.likes.size %></span>
+    <span class="like-count" data-like-target="count"><%= photo.likes_count %></span>
   <% end %>
 <% end %>
