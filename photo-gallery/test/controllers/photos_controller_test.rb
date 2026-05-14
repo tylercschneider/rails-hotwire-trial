@@ -16,4 +16,16 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
     get new_photo_path
     assert_redirected_to new_session_path
   end
+
+  test "create persists a new photo for signed-in users" do
+    sign_in_as(users(:one))
+    assert_difference -> { Photo.count }, 1 do
+      post photos_path, params: { photo: {
+        photographer: "Tyler",
+        source_url: "https://example.com",
+        src_medium: "https://example.com/img.jpg",
+        alt: "Test photo"
+      } }
+    end
+  end
 end
