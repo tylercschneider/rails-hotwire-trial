@@ -11,4 +11,9 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
     get photos_path
     assert_select "li.photo", count: Photo.count
   end
+
+  test "new redirects guests to sign in" do
+    get new_photo_path
+    assert_redirected_to new_session_path
+  end
 end
