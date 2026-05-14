@@ -30,7 +30,7 @@
       <% end %>
       <% if Current.user %>
         <nav class="header-nav">
-          <span class="header-user"><%= Current.user.email_address %></span>
+          <span class="header-user"><%= Current.user.display_name %></span>
           <%= link_to "Add photo", new_photo_path, class: "header-link" %>
           <%= button_to "Sign out", session_path, method: :delete, class: "sign-out-button" %>
         </nav>
