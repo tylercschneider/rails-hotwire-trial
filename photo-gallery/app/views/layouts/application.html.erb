@@ -24,12 +24,21 @@
   </head>
 
   <body>
-    <header class="app-header">
+    <header class="app-header" data-controller="mobile-nav">
       <%= link_to root_path, class: "logo-link", aria: { label: "Photo Gallery home" } do %>
         <%= image_tag "logo.svg", class: "logo", alt: "Photo Gallery" %>
       <% end %>
       <% if Current.user %>
-        <nav class="header-nav">
+        <button type="button" class="hamburger"
+                data-action="click->mobile-nav#toggle"
+                data-mobile-nav-target="toggle"
+                aria-label="Toggle menu"
+                aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <nav class="header-nav" data-mobile-nav-target="menu">
           <span class="header-user"><%= Current.user.display_name %></span>
           <%= link_to "Add photo", new_photo_path, class: "header-link" %>
           <%= button_to "Sign out", session_path, method: :delete, class: "sign-out-button" %>
