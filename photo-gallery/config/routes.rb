@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
-  resources :photos, only: %i[ index new create ] do
+  resources :photos, only: %i[ index new create edit update destroy ] do
     resource :like, only: %i[ create destroy ]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -39,4 +39,19 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
     } }
     assert_equal users(:one), Photo.last.uploader
   end
+
+  test "destroy by uploader removes the photo" do
+    photo = photos(:one)
+    sign_in_as(photo.uploader)
+    assert_difference -> { Photo.count }, -1 do
+      delete photo_path(photo)
+    end
+  end
+
+  test "destroy by non-uploader does not remove the photo" do
+    sign_in_as(users(:two))
+    assert_no_difference -> { Photo.count } do
+      delete photo_path(photos(:one))
+    end
+  end
 end
