@@ -17,8 +17,24 @@
 
     <%= form.submit "Sign in", class: "primary-button" %>
   <% end %>
+</section>
 
-  <p class="sign-in-footer">
-    <%= link_to "Forgot password?", new_password_path %>
-  </p>
+<section class="demo-accounts">
+  <h2>Demo accounts</h2>
+  <p class="demo-hint">Password for all accounts is <code>password</code>.</p>
+  <ul class="demo-list">
+    <% [
+      [ "admin@example.com", "Admin" ],
+      [ "alice@example.com", "Alice" ],
+      [ "bob@example.com",   "Bob"   ],
+      [ "carol@example.com", "Carol" ]
+    ].each do |email, label| %>
+      <li>
+        <%= button_to session_path, params: { email_address: email, password: "password" }, class: "demo-button" do %>
+          <strong><%= label %></strong>
+          <span class="demo-email"><%= email %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </section>
