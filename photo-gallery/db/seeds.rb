@@ -12,11 +12,11 @@ viewer_emails.each do |email|
 end
 
 CSV.foreach(Rails.root.join("db/photos.csv"), headers: true) do |row|
-  Photo.find_or_create_by!(source_url: row["url"]) do |photo|
-    photo.photographer = row["photographer"]
-    photo.src_medium = row["src.medium"]
-    photo.alt = row["alt"]
-  end
+  photo = Photo.find_or_initialize_by(source_url: row["url"])
+  photo.photographer = row["photographer"]
+  photo.src_medium = row["src.medium"]
+  photo.alt = row["alt"]
+  photo.save!
 end
 
 photos = Photo.order(:id).to_a
